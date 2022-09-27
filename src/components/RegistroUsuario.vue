@@ -6,10 +6,11 @@
     <main>
         <img src="/image/logo.PNG" alt="">
         <form v-on:submit.prevent="processRegistroUsuario">
-            <fieldset>
+            
                 <div>
                     <label for="T_ID">Tipo ID:</label>
-                    <input type="text" v-model="user.tipoIdentificacion" id="T_ID" required placeholder="C.C   T.T   P.P   C.E">
+                    <input type="text" v-model="user.tipoIdentificacion" id="T_ID" required
+                        placeholder="C.C   T.T   P.P   C.E">
                 </div>
                 <div>
                     <label for="user">N° Identificación:</label>
@@ -27,38 +28,31 @@
                 <div>
                     <label for="telefono">Teléfono:</label>
                     <input type="tel" v-model="user.telefono" id="telefono" required placeholder="311 234 5678">
-                </div>                
+                </div>
                 <div>
                     <label for="genero">Género:</label>
-                    <select v-model="user.genero" id="genero">
-                        <option value="Femenino">Femenino</option>
-                        <option value="Masculino">Masculino</option>
-                        <option value="No binario">No binario</option>
-                    </select>
+                    <input type="text" v-model="user.genero" id="genero">
                 </div>
                 <div>
                     <label for="email">e-mail:</label>
-                    <input type="email" v-model="user.correoElectronico" id="email" required placeholder="email@dominio.com">
+                    <input type="email" v-model="user.correoElectronico" id="email" required
+                        placeholder="email@dominio.com">
                 </div>
                 <div>
                     <label for="pass">Usuario:</label>
                     <input type="text" v-model="user.username" id="pass" required placeholder="Usuario">
                 </div>
                 <div>
-                    <label for="pass">Contraseña:</label>
-                    <input type="password" v-model="user.pasword" id="pass" required placeholder="***********">
+                    <label for="passa">Contraseña:</label>
+                    <input type="password" v-model="user.password" id="passa" required placeholder="***********">
                 </div>
                 <div>
                     <label for="rol">Rol:</label>
-                    <select v-model="user.rol" id="rol">
-                        <option value="paciente">Paciente</option>
-                        <option value="médico">Médico</option>
-                        <option value="familiar">Familiar</option>
-                    </select>
+                    <input type="text" v-model="user.rol" id="rol">
                 </div>
-                
+
                 <button type="submit" class="enviar">Registrar Usuario</button>
-            </fieldset>
+            
         </form>
     </main>
 
@@ -68,7 +62,7 @@
 import axios from 'axios';
 
 export default {
-    data: function() {
+    data: function () {
         return {
             user: {
                 tipoIdentificacion: "",
@@ -86,25 +80,26 @@ export default {
     },
 
     methods: {
-        processRegistroUsuario: function() {
-            axios.post (
+        processRegistroUsuario: function () {
+            axios.post(
                 "https://hospital-dd-2.herokuapp.com/usuario/",
                 this.user,
-                {headers: {}}
+                { headers: {} }
             )
-            .then((result) => {
-                let dataSignUp = {
-                    username: this.user.username,
-                    token_acess: result.data.access,
-                    token_refresh: result.data.refresh,
-                }
+                .then((result) => {
+                    let dataSignUp = {
+                        username: this.user.username,
+                        token_acess: result.data.access,
+                        token_refresh: result.data.refresh
+                    }
 
-                this.$emit('completedRegistroUsuario', dataSignUp)
-            })
-            .catch((error) => {
-                console.log(error)
-                alert("Error: Fallo en el registro");
-            });
+                    this.$emit('completedRegistroUsuario', dataSignUp)
+                })
+                .catch((error) => {
+                    console.log(error)
+                    alert("Error: Fallo en el registro");
+                    alert(error)
+                });
         }
     }
 }

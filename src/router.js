@@ -21,8 +21,8 @@ const routes = [
   },
 
   {
-    path: '/user/registrarusuario',
-    name: 'registrarUsuario',
+    path: '/user/registrousuario',
+    name: 'registroUsuario',
     component: RegistroUsuario
   },
 

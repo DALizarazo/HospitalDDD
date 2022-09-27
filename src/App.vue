@@ -7,7 +7,7 @@
     <div>
       <a href="">¿Quiénes somos?</a>
       <a href="">Nuestros Servicios</a>
-      <button v-if="is_auth" v-on:click="loadRegistrarMedico">Registrar Medico</button>
+      <button class="registrarMedico" v-if="is_auth" v-on:click="loadRegistrarMedico">Registrar Medico</button>
       <button v-if="is_auth" v-on:click="loadRegistrarPaciente">Registrar Paciente</button>
       <button v-if="is_auth" v-on:click="loadRegistrarFamiliar"> Registrar Familiar</button>
       <button v-if="is_auth" v-on:click="logOut">Cerrar Sesión</button>
@@ -59,7 +59,7 @@ export default {
     },
 
     loadRegistrarUsuario: function () {
-      this.$router.push({ name: "registrarUsuario" })
+      this.$router.push({ name: "registroUsuario" })
     },
 
     loadRegistrarMedico: function () {
@@ -165,7 +165,7 @@ main {
   cursor: pointer;
 }
 
-main a {
+.registrarMedico {
   float: left;
   margin-top: 30px;
   margin-left: 20px;
