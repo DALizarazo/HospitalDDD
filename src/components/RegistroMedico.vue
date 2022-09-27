@@ -5,19 +5,19 @@
 
     <main>
         <img src="image/logo.PNG" alt="Logo">
-        <form>
+        <form v-on:submit.prevent="processRegistroMedico">
             <fieldset>
                 <div>
                     <label for="user">Usuario:</label>
-                    <input type="text" id="user" required>
+                    <input type="text" v-model="medico.numeroUdentificacionUsuario" id="user" required>
                 </div>
                 <div>
                     <label for="especialidad">Especialidad:</label>
-                    <input type="text" id="especialidad" required>
+                    <input type="text" v-model="medico.especialidad" id="especialidad" required>
                 </div>
                 <div>
                     <label for="registro">N° Registro:</label>
-                    <input type="text" id="registro" required>
+                    <input type="text" v-model="medico.registro" id="registro" required>
                 </div>
 
 
@@ -27,6 +27,40 @@
     </main>
 
 </template>
+
+<script>
+    import axios from 'axios';
+
+    export default {
+        data: function () {
+            return {
+                medico: {
+                    numeroUdentificacionUsuario: "",
+                    especialidad: "",
+                    registro: ""
+                }
+            }
+        },
+
+        methods: {
+            processRegistroMedico: function () {
+                axios.post (
+                    "https://hospital-dd-2.herokuapp.com/medico/",
+                    this.medico,
+                    { headers: {} }
+                )
+                    .then((result) => {
+                        this.$emit('completedRegistrarMedico')
+                    })
+                    .catch((error) => {
+                        console.log(error)
+                        alert("Error: Fallo en el ]Registro de Medico")
+                    })
+            }
+        }
+    }
+</script>
+
 
 <style scoped>
 header {

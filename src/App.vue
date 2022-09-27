@@ -100,7 +100,9 @@ export default {
       this.completedLogIn(data);
     },
 
-    completedRegistrarMedico: function (data) { },
+    completedRegistrarMedico: function (data) { 
+      alert("Registro de Medico Existoso")
+    },
 
     completedRegistrarPaciente: function (data) { },
 

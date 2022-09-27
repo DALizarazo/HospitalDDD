@@ -40,7 +40,7 @@ const routes = [
 
   {
     path: '/user/registrarfamiliar',
-    name: 'registrarFamiilar',
+    name: 'registrarFamiliar',
     component: RegistrarFamiliar
   },
 

@@ -31,7 +31,11 @@
                 </div>
                 <div>
                     <label for="genero">Género:</label>
-                    <input type="text" v-model="user.genero" id="genero">
+                    <select v-model="user.genero" id="genero">
+                        <option value="Femenino">Femenino</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="No binario">No binario</option>
+                    </select>
                 </div>
                 <div>
                     <label for="email">e-mail:</label>
@@ -48,7 +52,11 @@
                 </div>
                 <div>
                     <label for="rol">Rol:</label>
-                    <input type="text" v-model="user.rol" id="rol">
+                    <select v-model="user.rol" id="rol">
+                        <option value="paciente">Paciente</option>
+                        <option value="médico">Médico</option>
+                        <option value="familiar">Familiar</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="enviar">Registrar Usuario</button>
@@ -98,7 +106,6 @@ export default {
                 .catch((error) => {
                     console.log(error)
                     alert("Error: Fallo en el registro");
-                    alert(error)
                 });
         }
     }
