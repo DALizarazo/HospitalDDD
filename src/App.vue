@@ -18,10 +18,10 @@
 
     <div class="main-component">
 
-      <router-view v-on:completdLogIn="completedLogIn" v-on:completedRegistroUsuario="completedRegistroUsuario"
+      <router-view v-on:completedLogIn="completedLogIn" v-on:completedRegistroUsuario="completedRegistroUsuario"
         v-on:completedRegistrarFamiliar="completedRegistrarFamiliar"
         v-on:completedRegistrarPaciente="completedRegistrarPaciente"
-        v-on:completdRegistrarMedico="completedRegistrarMedico" v-on:logOut="logOut">
+        v-on:completedRegistrarMedico="completedRegistrarMedico" v-on:logOut="logOut">
       </router-view>
 
     </div>
@@ -36,7 +36,6 @@
 
 <script>
 export default {
-  name: 'App',
 
   data: function () {
     return {

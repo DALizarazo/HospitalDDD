@@ -5,7 +5,7 @@
 
     <main>
         <img src="/image/logo.PNG" alt="">
-        <form v-on:submit.prevent="completedRegistroUsuario">
+        <form v-on:submit.prevent="processRegistroUsuario">
             <fieldset>
                 <div>
                     <label for="T_ID">Tipo ID:</label>
@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
     data: function() {
@@ -79,13 +79,14 @@ export default {
                 genero: "",
                 correoElectronico: "",
                 username: "",
+                password: "",
                 rol: "",
             }
         }
     },
 
-    methodos: {
-        completedRegistroUsuario: function() {
+    methods: {
+        processRegistroUsuario: function() {
             axios.post (
                 "https://hospital-dd-2.herokuapp.com/usuario/",
                 this.user,

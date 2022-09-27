@@ -6,7 +6,7 @@
 
     <main>
         <img src="/image/logo.PNG" alt="Logo">
-        <form>
+        <form v-on:submit.prevent="processLogInUser">
             <fieldset>
                 <div>
                     <label for="user">Usuario:</label>
@@ -26,7 +26,6 @@
 import axios from 'axios';
 
 export default {
-    name: 'LogIn',
 
     data: function () {
         return {
