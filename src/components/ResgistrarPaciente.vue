@@ -1,34 +1,74 @@
 <template>
-    <header>
-        <h1>REGISTRO DE PACIENTES</h1>
-    </header>
+
+    <h1 class="titulo-principal">REGISTRO DE PACIENTES</h1>
+
 
     <main>
-        <img src="image/logo.PNG" alt="Logo">
-        <form>
-            <fieldset>
+        <img src="/image/logo.PNG" alt="Logo">
+        <form v-on:submit.prevent="processRegistroPaciente">
+
                 <div>
                     <label for="user">Usuario:</label>
-                    <input type="text" id="user" required>
+                    <input type="text" v-model="paciente.numeroIdentificacionUsuario" id="user" required>
                 </div>
                 <div>
                     <label class="date" for="FechaNac">Fecha de naciemiento:</label>
-                    <input type="date" id="FechaNac" required>
+                    <input type="date" v-model="paciente.fechaNacimiento" id="FechaNac" required>
                 </div>
                 <div>
                     <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" required>
+                    <input type="text" v-model="paciente.direccion" id="direccion" required>
                 </div>
                 <div>
                     <label for="idmedico">ID médico:</label>
-                    <input type="tel" id="idmedico" required>
+                    <input type="tel" v-model="paciente.id_medico" id="idmedico" required>
                 </div>
 
+                <button>Volver</button>
+
                 <input type="submit" value="Registrar paciente" class="enviar">
-            </fieldset>
+
         </form>
     </main>
 </template>
+
+<script>
+import axios from 'axios';
+
+export default {
+    data: function () {
+        return {
+            paciente: {
+                numeroIdentificacionUsuario: "",
+                fechaNacimeinto: "",
+                direccion: "",
+                id_medico: "",
+            }
+        }
+    },
+
+    methods: {
+        processRegistroPaciente: function () {
+            axios.post(
+                "https://hospital-dd-2.herokuapp.com/paciente/",
+                this.paciente,
+                { headers: {} }
+            )
+
+                .then((result) => {
+                    alert("Registro de paciente exitoso")
+                    this.$emit('processRegistroPaciente')
+                })
+                .catch((error) => {
+                    console.log(error);
+                    alert("Error: Fallo en el Registro de Pacinete")
+                })
+        }
+    }
+}
+
+</script>
+
 
 <style scoped>
 header {

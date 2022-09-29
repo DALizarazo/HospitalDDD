@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 import axios from 'axios';
 
 export default {
@@ -64,21 +64,22 @@ export default {
 
     methods: {
         getData: async function () {
-            if (localStorage.getItem("token_acces") === null || localStorage.getItem("token_refresh") === null) {
+            if (localStorage.getItem("token_access") === null || localStorage.getItem("token_refresh") === null) {
                 this.$emit('logOut');
                 return;
             }
 
             await this.verifyToken();
             let token = localStorage.getItem("token_access");
-            let userId = jwt_decode(token).user_id.toString();
+            let id = jwt_decode(token).user_id.toString();
+            axios.get(`https://hospital-dd-2.herokuapp.com/usuario/${id}`,
 
-            axios.get(`https://hospital-dd-2.herokuapp.com/usuario/${userId}/`, { headers: { 'Authorization': `Bearer ${token}` } })
+                { headers: { 'Authorization': `Bearer ${token}` } })
                 .then((result) => {
                     this.tipoIdentificacion = result.data.tipoIdentificacion;
                     this.id = result.data.id;
                     this.nombre = result.data.nombre;
-                    this.apellido = result.data.apellido;
+                    this.apellidos = result.data.apellidos;
                     this.telefono = result.data.telefono;
                     this.genero = result.data.genero;
                     this.correoElectronico = result.data.correoElectronico;
@@ -87,8 +88,9 @@ export default {
                     this.loaded = true;
                 })
 
-                .catch(() => {
+                .catch((error) => {
                     this.$emit('logOut');
+                    console.log(error);
                 });
         },
 

@@ -4,10 +4,10 @@
     <img class="imglogo" src="/image/logo.PNG" alt="Logo" />
   </header>
   <main>
-    <div>
-      <a href="">¿Quiénes somos?</a>
-      <a href="">Nuestros Servicios</a>
-      <button class="registrarMedico" v-if="is_auth" v-on:click="loadRegistrarMedico">Registrar Medico</button>
+    <div class="botones">
+      <button v-if="!is_auth">¿Quiénes somos?</button>
+      <button v-if="!is_auth">Nuestros Servicios</button>
+      <button v-if="is_auth" v-on:click="loadRegistrarMedico">Registrar Medico</button>
       <button v-if="is_auth" v-on:click="loadRegistrarPaciente">Registrar Paciente</button>
       <button v-if="is_auth" v-on:click="loadRegistrarFamiliar"> Registrar Familiar</button>
       <button v-if="is_auth" v-on:click="logOut">Cerrar Sesión</button>
@@ -16,22 +16,19 @@
       <button v-if="!is_auth" v-on:click="loadRegistrarUsuario">Registrar Usuario</button>
     </div>
 
-    <div class="main-component">
 
-      <router-view v-on:completedLogIn="completedLogIn" v-on:completedRegistroUsuario="completedRegistroUsuario"
-        v-on:completedRegistrarFamiliar="completedRegistrarFamiliar"
-        v-on:completedRegistrarPaciente="completedRegistrarPaciente"
-        v-on:completedRegistrarMedico="completedRegistrarMedico" v-on:logOut="logOut">
-      </router-view>
 
-    </div>
+    <router-view v-on:completedLogIn="completedLogIn" v-on:completedRegistroUsuario="completedRegistroUsuario"
+      v-on:completedRegistrarFamiliar="completedRegistrarFamiliar"
+      v-on:completedRegistrarPaciente="completedRegistrarPaciente"
+      v-on:completedRegistrarMedico="completedRegistrarMedico" v-on:logOut="logOut">
+    </router-view>
+
+
 
     <br />
   </main>
 
-  <footer>
-
-  </footer>
 </template>
 
 <script>
@@ -100,7 +97,7 @@ export default {
       this.completedLogIn(data);
     },
 
-    completedRegistrarMedico: function (data) { 
+    completedRegistrarMedico: function (data) {
       alert("Registro de Medico Existoso")
     },
 
@@ -123,7 +120,7 @@ header {
   width: 1280px;
 
   margin: 0 auto;
-  background-color: blanchedalmond;
+  background: none;
 }
 
 header h1 {
@@ -138,7 +135,7 @@ header h1 {
 }
 
 body {
-  background-color: coral;
+  background: linear-gradient(rgba(120, 148, 188, 0.5), rgba(72, 162, 174, 0.7));
 }
 
 .imglogo {
@@ -151,6 +148,7 @@ body {
 main {
   width: 1040px;
   margin: 0 auto;
+  background: none;
 }
 
 .login {
@@ -167,20 +165,29 @@ main {
   cursor: pointer;
 }
 
-.registrarMedico {
-  float: left;
+main button {
+  width: 150px;
+  height: 70px;
   margin-top: 30px;
-  margin-left: 20px;
-  padding: 10px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: black;
-  background: rgba(99, 195, 221, 0.15);
-  font-weight: bolds;
-  border: 1px solid black;
+  margin-right: 10px;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background: #48a2ae;
+  border: none;
   border-radius: 5px;
-
+  transition: 1s all;
   cursor: pointer;
+}
+
+
+main button:hover,
+.logOut:hover {
+  background: darkorange;
+  transform: scale(1.1);
+  /*--rotate(xdeg)*/
+
 }
 
 main textarea {
@@ -223,5 +230,10 @@ footer img {
   margin: 0%;
   padding: 0%;
   background: #fdfefe;
+}
+
+.botones {
+  width: 940px;
+  margin: 0px auto;
 }
 </style>
