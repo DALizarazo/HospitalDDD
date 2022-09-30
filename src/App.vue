@@ -4,7 +4,7 @@
     <img class="imglogo" src="/image/logo.PNG" alt="Logo" />
   </header>
   <main>
-    <div class="botones">
+    <section class="botones">
       <button v-if="!is_auth">¿Quiénes somos?</button>
       <button v-if="!is_auth">Nuestros Servicios</button>
       <button v-if="is_auth" v-on:click="loadRegistrarMedico">Registrar Medico</button>
@@ -14,7 +14,7 @@
       <button v-if="is_auth" v-on:click="loadHome">Inicio</button>
       <button v-if="!is_auth" v-on:click="loadLogIn">Inicio Sesión</button>
       <button v-if="!is_auth" v-on:click="loadRegistrarUsuario">Registrar Usuario</button>
-    </div>
+    </section>
 
 
 
@@ -171,7 +171,7 @@ main button {
   margin-top: 30px;
   margin-right: 10px;
   padding: 15px 0;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: bold;
   color: white;
   background: #48a2ae;
@@ -235,5 +235,7 @@ footer img {
 .botones {
   width: 940px;
   margin: 0px auto;
+  display: inline-block;
+  
 }
 </style>

@@ -123,7 +123,7 @@ form select {
     background: mintcream;
 }
 
-main button {
+main button, .enviar {
     width: 40%;
     margin: 30px 30px 0 15px;
     padding: 15px 0;
